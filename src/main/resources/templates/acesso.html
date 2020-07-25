@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<head lang="pt-br">
+<title>Sistema de Cadastro</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet" href="materialize/css/style.css" />
+<link type="text/css" rel="stylesheet" href="style/acesso.css" />
+<meta charset="UTF-8">
+
+</head>
+<body>
+	<div class="container row">
+
+		<form class="col s12 m12 l12" action="index">
+			<p>Acesso ao Sistema</p>
+
+			<label id="usuario"><input type="text" value=""
+				name="usuario" autofocus="autofocus" placeholder="Usuário"></label>
+			<label id="senha"><input type="password" value=""
+				name="senha" placeholder="Senha"> </label><br>
+
+			<div id="salvar" class="col s12">
+				<button class="waves-effect waves-light btn-small" type="submit">Entrar</button>
+			</div>
+
+			<label><a class="col s6 l6" href="#"><p>Novo usuário</p></a></label>
+			<label><a class="col s6 l6" href="#"><p>Esqueci a
+						senha</p></a></label>
+		</form>
+
+	</div><br>
+
+	<footer>
+		<p>Projeto Java Web 2020</p>
+		<small><p>&copy;Copyright Todos dos direitos reservados.
+				Desenvolvido por Victor Pinho.</p></small> <small><p>Sistema de
+				cadastro hospitalar. Tecnologias utilizadas: Java 8, Spring Boot,
+				HTML, CSS e Materialize.</p></small>
+	</footer>
+
+	<script type="text/javascript" src="materialize/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>

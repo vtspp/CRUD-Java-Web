@@ -1,0 +1,21 @@
+body {
+	padding-top: 100px;
+	height: 100%;
+	margin: 0;
+	background-image: url("background2.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+th, td{
+	border-width: medium;
+	border-style: solid;
+	text-align: center;
+	font-family: sans-serif;
+	color: white;
+}
+
+.container {
+	background-color: purple;
+	
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<head lang="pt-br">
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/incon?family=Material+Incons"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet" href="style/cadastrar.css" />
+
+<title>Novo Paciente</title>
+</head>
+<body>
+
+	<div id="container" class="container row">
+		<div id="painel">
+			<form action="cadastrar" method="post">
+				<div id="nome" class="col s12">
+					<label>NOME: <input value="" name="nome"></label>
+				</div>
+
+				<div id="cpf" class="col s6 l4">
+					<label>CPF: <input type="text" value="" name="cpf"></label>
+				</div>
+				<div id="rg" class="col s6 l4">
+					<label>RG: <input type="text" value="" name="rg"></label>
+				</div>
+				<div id="nascimento" class="col s6 l4">
+					<label>NASCIMENTO: <input type="date" value=""
+						name="nascimento"></label>
+				</div>
+				
+				<div id="genero" class="col s6 l4">
+					<label >GÊNERO: 
+					    <select>
+							<option value="M">Masculino</option>
+							<option value="F">Feminino</option>
+							<option value="O">Outros</option>
+						</select></label>
+				</div>
+
+				<div id="celular" class="col s6 l4">
+					<label>CELULAR: <input type="tel" value="" name="celular" placeholder="(99)999999999"></label>
+				</div>
+				
+				<div id="telefone" class="col s6 l4">
+					<label>TELEFONE: <input type="tel" value="" name="telefone" placeholder="(99)99999999"></label>
+				</div>
+
+				<div id="email" class="col s12">
+					<label>EMAIL: <input type="email" value="" name="email"></label>
+				</div>
+				<div id="endereço" class="col s8">
+					<label>ENDEREÇO: <input type="text" value=""
+						name="endereco"></label>
+				</div>
+				<div id="cep" class="col s4">
+					<label>CEP: <input type="text" value="" name="cep"></label>
+				</div>
+
+				<div id="salvar" class="col s10">
+					<button class="waves-effect waves-light btn-small" type="submit">Salvar</button>
+				</div>
+				<div id="voltar" class="col s2">
+					<a href="/index"><button
+							class="waves-effect waves-light btn-small" type="button">Voltar</button></a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript" src="materialize/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('select').formSelect();
+		});
+	</script>
+</body>
+</html>

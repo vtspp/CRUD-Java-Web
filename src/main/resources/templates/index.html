@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<head lang="pt-br">
+<title>Java Web</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet" href="materialize/css/style.css" />
+<link type="text/css" rel="stylesheet" href="style/index.css" />
+<meta charset="UTF-8">
+
+</head>
+<body>
+	<nav>
+		<div class="container">
+
+			<!-- menu para desktop -->
+			<!-- <ul class="right hide-on-med-and-down">
+				<li><a href="/novo"><span>Cadastrar paciente</span></a></li>
+				<li><a href="/listar">Mostrar dados cadastrados</a></li>
+				<li><a href="/carregar">Carregar arquivo .cisv</a></li>
+			</ul> -->
+
+			<!-- menu para moveis -->
+			<ul class="sidenav" id="mobile">
+				<li><a href="/novo" class="waves-effect waves-light btn-small">Cadastrar paciente</a></li>
+				<li><a href="/listar" class="waves-effect waves-light btn-small">Mostrar dados cadastrados</a></li>
+				<li><a href="/carregar" class="waves-effect waves-light">Carregar arquivo .csv</a></li>
+			</ul>
+
+			<a class="sidenav-trigger" data-target="mobile" href="#"><i
+				class="material-icons">menu</i></a>
+		</div>
+	</nav>
+
+
+	<!-- <div class="container">
+		<div class="card">
+			<div class="box"></div>
+			<div class="content">
+				<div id="cabeçalho">Escolha um dos Serviços</div>
+				<br> <a id="cadastro"
+					class="waves-effect waves-light btn-small" href="/novo"><i
+					class="material-icons left">create</i>Cadastrar Paciente</a><br> <br>
+				<a id="carregar" class="waves-effect waves-light btn-small"
+					href="/carregar"><i class="material-icons left">file_upload</i>Carregar
+					Arquivo .CSV</a><br> <br> <a id="listar"
+					class="waves-effect waves-light btn-small" href="/listar"><i
+					class="material-icons left">remove_red_eye</i>Mostrar Banco de
+					Dados</a>
+			</div>
+		</div>
+	</div> -->
+
+	<script type="text/javascript" src="materialize/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.sidenav').sidenav();
+		});
+	</script>
+</body>
+</html>

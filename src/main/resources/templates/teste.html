@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" lang="pt-br">
+<title>Testes do Materialize</title>
+<link href="https://fonts.googleapis.com/incon?family=Material+Incons"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+
+</head>
+<body>
+
+	<div class="row">
+		<form class="col s12">
+			<div class="input-field col s12">
+				<select>
+					<option value="1">teste 1</option>
+				</select>
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript" src="materialize/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('select').formSelect();
+		});
+	</script>
+</body>
+</html>
