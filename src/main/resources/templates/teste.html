@@ -12,21 +12,36 @@
 </head>
 <body>
 
-	<div class="row">
-		<form class="col s12">
-			<div class="input-field col s12">
-				<select>
-					<option value="1">teste 1</option>
-				</select>
-			</div>
-		</form>
-	</div>
+	<a class="btn lista" data-target="desktop" href="#">Serviços</a>
+		<ul id="desktop" class="dropdown-content">
+			<li><a href="/novo"><i class="material-icons left">create</i>Cadastrar
+					Paciente</a></li>
 
+			<li><a href="/listar"><i class="material-icons left">remove_red_eye</i>Mostrar
+					Dados Cadastrados</a></li>
+
+			<li><a href="/carregar"><i class="material-icons left">file_upload</i>Carregar
+					Arquivo</a></li>
+		</ul>
+
+
+<a class="right dropdown-trigger hide-on-med-and-down" data-target="dropdown1"><i
+			class="material-icons left">work</i>Serviços</a>
+		<ul id="dropdown1" class="dropdown-content">
+			<li><a href="/novo"><i class="material-icons left">create</i>Cadastrar
+					Paciente</a></li>
+
+			<li><a href="/listar"><i class="material-icons left">remove_red_eye</i>Mostrar
+					Dados Cadastrados</a></li>
+
+			<li><a href="/carregar"><i class="material-icons left">file_upload</i>Carregar
+					Arquivo</a></li>
+		</ul>
 	<script type="text/javascript" src="materialize/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('select').formSelect();
+			$('.lista').dropdown();
 		});
 	</script>
 </body>

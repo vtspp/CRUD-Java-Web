@@ -15,51 +15,85 @@
 </head>
 <body>
 	<nav>
-		<div class="container">
 
-			<!-- menu para desktop -->
-			<!-- <ul class="right hide-on-med-and-down">
-				<li><a href="/novo"><span>Cadastrar paciente</span></a></li>
-				<li><a href="/listar">Mostrar dados cadastrados</a></li>
-				<li><a href="/carregar">Carregar arquivo .cisv</a></li>
-			</ul> -->
+		<a href="/index" class="brand-logo"><img class="responsive-img"
+			alt="Logo Java" src="style/logo-java-coffee-cup.svg"><span>PROJETO</span></a>
+		
+		<!-- menu para desktop -->
+		<ul class="right hide-on-med-and-down" id="desktop">
 
-			<!-- menu para moveis -->
+			<li><a href="/index"><i class="material-icons left">home</i>Home</a></li>
+			<li><a class="right desktop hide-on-med-and-down"
+				data-target="listaServiço"><i class="material-icons left">work</i>Serviços</a>
+				<ul id="listaServiço" class="dropdown-content">
+					
+					<!-- Aqui pode ser adicionados novos serviços na lista -->
+					<li><a href="/novo"><i class="material-icons left">perm_identity</i>Novo</a></li>
+				    <li><a href="/novo"><i class="material-icons left">create</i>Alterar dados</a></li>
+					<li><a href="/listar"><i class="material-icons left">remove_red_eye</i>Visualizar Banco de dados</a></li>
+					<li><a href="/carregar"><i class="material-icons left">file_upload</i>Carregar
+							Arquivo</a></li>
+				</ul></li>
+
+			<li><a href="/index"><i class="material-icons left">help</i>Informações
+					do Sistema</a></li>
+		</ul>
+
+		<!-- menu para moveis -->
+		<div class="container hide-on-large-only">
+
+			<a href="/index" class="brand-logo"><img
+				class="responsive-img" alt="Logo Java"
+				src="style/logo-java-coffee-cup.svg"><span>PROJETO</span></a>
+
+			
 			<ul class="sidenav" id="mobile">
-				<li><a href="/novo" class="waves-effect waves-light btn-small">Cadastrar paciente</a></li>
-				<li><a href="/listar" class="waves-effect waves-light btn-small">Mostrar dados cadastrados</a></li>
-				<li><a href="/carregar" class="waves-effect waves-light">Carregar arquivo .csv</a></li>
-			</ul>
+				<li><a href="/index"><i class="material-icons left">home</i>Home</a></li>
+			
+			<li><a class="mobile"
+				data-target="listaServiçoMoveis"><i class="material-icons left">work</i>Serviços</a>
+				<ul id="listaServiçoMoveis" class="dropdown-content">
+					
+					<!-- Aqui pode ser adicionados novos serviços na lista -->
+					<li><a href="/novo"><i class="material-icons left">perm_identity</i>Novo</a></li>
+				    <li><a href="/novo"><i class="material-icons left">create</i>Alterar dados</a></li>
+					<li><a href="/listar"><i class="material-icons left">remove_red_eye</i>Visualizar Banco de dados</a></li>
+					<li><a href="/carregar"><i class="material-icons left">file_upload</i>Carregar
+							Arquivo</a></li>
+				</ul></li>
+
+			        <li><a href="/index"><i class="material-icons left">help</i>Informações
+					do Sistema</a></li>
+			   </ul>
 
 			<a class="sidenav-trigger" data-target="mobile" href="#"><i
 				class="material-icons">menu</i></a>
 		</div>
 	</nav>
 
-
-	<!-- <div class="container">
-		<div class="card">
-			<div class="box"></div>
-			<div class="content">
-				<div id="cabeçalho">Escolha um dos Serviços</div>
-				<br> <a id="cadastro"
-					class="waves-effect waves-light btn-small" href="/novo"><i
-					class="material-icons left">create</i>Cadastrar Paciente</a><br> <br>
-				<a id="carregar" class="waves-effect waves-light btn-small"
-					href="/carregar"><i class="material-icons left">file_upload</i>Carregar
-					Arquivo .CSV</a><br> <br> <a id="listar"
-					class="waves-effect waves-light btn-small" href="/listar"><i
-					class="material-icons left">remove_red_eye</i>Mostrar Banco de
-					Dados</a>
-			</div>
-		</div>
-	</div> -->
-
 	<script type="text/javascript" src="materialize/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.sidenav').sidenav();
+			
+			$('.desktop').dropdown({
+				inDuration : 300,
+				outDuration : 225,
+				constrainWidth : false,
+				hover : true,
+				alignment : 'left',
+				coverTrigger: false
+			});
+			
+			$('.mobile').dropdown({
+				inDuration : 300,
+				outDuration : 225,
+				constrainWidth : false,
+				hover : false,
+				alignment : 'left',
+				coverTrigger: false
+			});
 		});
 	</script>
 </body>
