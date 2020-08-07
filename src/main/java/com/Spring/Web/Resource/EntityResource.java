@@ -12,12 +12,16 @@ import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.Spring.Web.Model.Paciente;
 import com.Spring.Web.Repository.EntityRepository;
@@ -25,22 +29,50 @@ import com.Spring.Web.Repository.EntityRepository;
 @Controller
 public class EntityResource {
 
+	
+	private final EntityRepository entityRepositoryDAO;
+	
 	@Autowired
-	private EntityRepository entityRepository;
+	public EntityResource(EntityRepository entityRepositoryDAO) {
+		this.entityRepositoryDAO = entityRepositoryDAO;
+	}
+	
+	@PostMapping("/cadastrar")
+	public String salvarPaciente(@RequestBody Paciente paciente) {
+		entityRepositoryDAO.save(paciente);
+		return "redirect:novo";
+	}
+	
+	@PutMapping
+	public String alterarDados (Paciente paciente) {
+		return "redirect:alterarDados";
+	}
+	
+	@GetMapping("/listar")
+	public ModelAndView listaPacientes() {
+		ModelAndView model = new ModelAndView("tabelaSql");
+		model.addObject("pacientes", entityRepositoryDAO.findAll());
+		return model;
+	}
 
 	@PostMapping("/salvar")
 	public String salvarListaCSV(@RequestParam("file") MultipartFile file) throws IOException {
-		//Falta criar a classe de serviço. Feito na classe de resource apenas para testes iniciais.
-		//Será usada uma pasta temporaria do sistema para receber o arquivo. O mesmo deverá ser apagado após a instância do objeto.
+		// Falta criar a classe de serviço. Feito na classe de resource apenas para
+		// testes iniciais.
+		// Será usada uma pasta temporaria do sistema para receber o arquivo. O mesmo
+		// deverá ser apagado após a instância do objeto.
 		String upLoadDir = "C:\\sts-bundle\\sts-3.9.9.RELEASE\\Project\\Hospital";
-		
-		Path copyLocation = Paths
-				.get(upLoadDir
-						+ File.separator 
-						+ StringUtils
-						.cleanPath(file.getOriginalFilename()));
-		
-		Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
+
+		Path copyLocation = Paths.get(
+				upLoadDir 
+				+ File.separator 
+				+ StringUtils.cleanPath(
+						file.getOriginalFilename()));
+
+		Files.copy(
+				file.getInputStream()
+				, copyLocation
+				, StandardCopyOption.REPLACE_EXISTING);
 
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(copyLocation.toString()))) {
 
@@ -49,13 +81,22 @@ public class EntityResource {
 
 				String[] vet = linha.split(",");
 
-				Paciente paciente = new Paciente(null, vet[0], Integer.parseInt(vet[1]), Integer.parseInt(vet[2]));
+				// Refatorar isso...
+				Paciente paciente = new Paciente(null, vet[0]
+						                             , vet[1]
+						                             , vet[2]
+						                             , vet[3]
+						                             , vet[4]
+						                             , vet[5]
+						                             , vet[6]
+						                             , vet[7]
+						                             , vet[8]);
 
-				entityRepository.save(paciente);
+				entityRepositoryDAO.save(paciente);
 
 				linha = bufferedReader.readLine();
 			}
-		} catch (FileNotFoundException e) {//falta implementar as Exception personalizadas
+		} catch (FileNotFoundException e) {// falta implementar as Exception personalizadas
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -64,50 +105,62 @@ public class EntityResource {
 		return "redirect:carregar";
 
 	}
-	
-	@GetMapping("/index")
-	public String menu() {
-		return "index";
+
+	@DeleteMapping("deletar/cpf/{cpf}")
+	public void deletarByCpf(@PathVariable String cpf) {
+		entityRepositoryDAO.deleteByCpf(cpf);
 	}
 	
-	@GetMapping("/carregar")
-	public String carregarCSV() {
-		return "carregarCSV";
+	@DeleteMapping("deletar/rg/{rg}")
+	public void deletarByRg(@PathVariable String rg) {
+		entityRepositoryDAO.deleteByRg(rg);
+	}
+	
+	@GetMapping("buscar/nome/{nome}")
+	public Paciente buscarByName(@PathVariable String nome) {
+		return entityRepositoryDAO.findByNomeIgnoreCaseContaining(nome);
+	}
+	
+	@GetMapping("buscar/cpf/{cpf}")
+	public Paciente buscarByCpf(@PathVariable String cpf) {
+		return entityRepositoryDAO.findByCpf(cpf);
+	}
+	
+	@GetMapping("buscar/rg/{rg}")
+	public Paciente buscarByRg(@PathVariable String rg) {
+		return entityRepositoryDAO.findByRg(rg);
+	}
+
+	// Telas
+	@GetMapping("/acesso")
+	public String telaAcesso() {
+		return "telaAcesso";
+	}
+
+	@GetMapping("/index")
+	public String telaMenu() {
+		return "telaMenu";
 	}
 	
 	@GetMapping("/novo")
-	public String novoPaciente() {
-		return "cadastrar";
+	public String telaNovoPaciente() {
+		return "telaNovoPaciente";
 	}
 	
-	@GetMapping("/listar")
-	public String listaPacientes(Model model) {
-		Iterable<Paciente> pacientes = entityRepository.findAll();
-		model.addAttribute("pacientes", pacientes);
-		return "tabelaSql";
+	@GetMapping("/alterarDados")
+	public String telaAlterarDados() {
+		return "alterarDados";
 	}
-	
-	@PostMapping("/cadastrar")
-	public String salvarPaciente(Paciente paciente) {
-		entityRepository.save(paciente);
-		return "redirect:novo";
+
+	@GetMapping("/carregar")
+	public String telaCarregarCSV() {
+		return "telaCarregarCSV";
 	}
-	
-	@GetMapping("/deletar")
-	public void deletarPaciente(Paciente paciente) {
-		entityRepository.deleteAll();
-	}
-	
-	
-	//testes
+
+	// testes
 	@GetMapping("/teste")
-	public String testeMaterialize(){
+	public String testeMaterialize() {
 		return "teste";
-	}
-	
-	@GetMapping("/acesso")
-	public String acesso() {
-		return "acesso";
 	}
 
 }

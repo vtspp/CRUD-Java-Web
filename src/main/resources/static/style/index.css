@@ -2,16 +2,12 @@ body {
 	background-image: url("background1.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
+	
 }
 
 nav {
 	background-color: #6200ea;
 	padding: 0px 20px;
-}
-
-nav li a {
-	color: white;
-	font-family: sans-serif;
 }
 
 nav li a:hover {
@@ -22,16 +18,21 @@ nav a img {
 	padding-top: 2px;
 }
 
-nav a span{
+nav a span {
 	float: right;
 }
 
-.container ul{
+#desktop li a {
+	color: white;
+}
+
+#desktop ul{
 	background-color: #6200ea;
 }
-
 .container li a {
 	color: white;
-	font-family: sans-serif;
 }
 
+.container ul {
+	background-color: #6200ea;
+}
