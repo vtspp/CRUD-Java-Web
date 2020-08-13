@@ -12,4 +12,5 @@ public interface EntityRepository extends CrudRepository<Paciente, String>{
 	Paciente findByRg(String rg);
 	void deleteByCpf(String cpf);
 	void deleteByRg(String rg);
+	boolean existsByCpf(String cpf);
 }

@@ -111,59 +111,78 @@
 			</div>
 
 		</article>
-	</section><br><br><br>
+	</section>
+	<br>
+	<br>
+	<br>
 
-	<aside class="row">
-		<form action="" class="col s1">
-			<p class="btn center">Filtros</p>
-			<label> <input name="escolhido" type="radio" class="with-gap"><span>Nome</span>
-			</label> <label> <input name="escolhido" type="radio"
-				class="with-gap"><span>CPF</span>
-			</label> <label> <input name="escolhido" type="radio"
-				class="with-gap"><span>RG</span>
-			</label> <label> <input name="escolhido" type="radio"
-				class="with-gap"><span>Todos</span>
-			</label><br><br>
+	<div>
+		<h4 class="center">Filtros</h4>
+		<form action="" class="row center">
+
+			<label class="col s2 m2 l1 offset-s1 offset-l3">
+			   <input value="nome" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Nome</span>
+			</label>
 			
-			<label> <input type="checkbox"
-				class="with-gap"><span>Ordenar de A-Z</span>
-			</label><br>
-			<br> <button class=" buscar waves-effect waves-light btn-small" type="submit">Buscar</button>
+			<label class="col s2 m2 l1">
+			   <input value="cpf" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>CPF</span>
+			</label>
+			
+			<label class="col s2 m2 l1">
+			   <input value="rg" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>RG</span>
+			</label>
+			
+			<label class="col s2 m2 l1">
+			   <input value="todos" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Todos</span>
+			</label>
+			
+			<label class="col s2 m2 l2">
+			   <input value="a-z" type="checkbox" class="with-gap"><span>Ordenar de A-Z</span>
+			</label><br><br>
+		
+			<input id="placeholder" class=" center col s6 m5 l4 offset-s3 offset-m3 offset-l4"
+				type="search" placeholder="">
+			<button class=" buscar waves-effect waves-light btn-small left"
+				type="submit">Buscar</button>
 		</form>
-		<section class="col s11">
-			<table class="container">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>Cpf</th>
-						<th>Rg</th>
-						<th>Nascimento</th>
-						<th>Genero</th>
-						<th>Celular</th>
-						<th>Telefone</th>
-						<th>Email</th>
-						<th>Endereco</th>
-						<th>Cep</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="paciente : ${pacientes}">
-						<td><span th:text="${paciente.nome}"></span></td>
-						<td><span th:text="${paciente.cpf}"></span></td>
-						<td><span th:text="${paciente.rg}"></span></td>
-						<td><span th:text="${paciente.nascimento}"></span></td>
-						<td><span th:text="${paciente.genero}"></span></td>
-						<td><span th:text="${paciente.celular}"></span></td>
-						<td><span th:text="${paciente.telefone}"></span></td>
-						<td><span th:text="${paciente.email}"></span></td>
-						<td><span th:text="${paciente.endereco}"></span></td>
-						<td><span th:text="${paciente.cep}"></span></td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
-	</aside>
-	
+
+	</div>
+
+
+	<section class="col s12 l12">
+		<table class="container">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Cpf</th>
+					<th>Rg</th>
+					<th>Nascimento</th>
+					<th>Genero</th>
+					<th>Celular</th>
+					<th>Telefone</th>
+					<th>Email</th>
+					<th>Endereco</th>
+					<th>Cep</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="paciente : ${pacientes}">
+					<td><span th:text="${paciente.nome}"></span></td>
+					<td><span th:text="${paciente.cpf}"></span></td>
+					<td><span th:text="${paciente.rg}"></span></td>
+					<td><span th:text="${paciente.nascimento}"></span></td>
+					<td><span th:text="${paciente.genero}"></span></td>
+					<td><span th:text="${paciente.celular}"></span></td>
+					<td><span th:text="${paciente.telefone}"></span></td>
+					<td><span th:text="${paciente.email}"></span></td>
+					<td><span th:text="${paciente.endereco}"></span></td>
+					<td><span th:text="${paciente.cep}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+
 	<footer>
 		<p>Projeto Java Web 2020</p>
 		<small><p>&copy;Copyright Todos dos direitos reservados.
@@ -174,7 +193,7 @@
 
 
 
-	<script type="text/javascript" src="materialize/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -199,9 +218,22 @@
 			});
 
 			$('.modal').modal();
+			
 
 		});
+		
+		function getRadioEscolhido(){
+			const e = document.getElementsByName("escolhido");
+			
+			for(let i = 0; i < e.length; i++){
+				if (e[i].checked){
+					return document.getElementById("placeholder").placeholder = "Buscar " + e[i].value;
+		            break;
+				}
+				return document.getElementById("placeholder").placeholder = "Selecione uma opção";
+			}
+		}
 	</script>
-	
+
 </body>
 </html>

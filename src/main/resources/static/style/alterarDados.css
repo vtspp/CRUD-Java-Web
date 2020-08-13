@@ -1,0 +1,30 @@
+body {
+	background-color: purple;
+	
+}
+
+#container {
+	width: 100%;
+	border-radius: 5px;
+	height: 576px;
+	padding: 40px;
+	background: #6200ea;
+	position: relative;
+}
+
+#painel {
+	width: 100%;
+	border-radius: 5px;
+	height: 500px;
+	padding: 40px;
+	background: white;
+}
+
+label {
+	color: black;
+}
+
+#salvar, #voltar {
+	padding-top: 20px;
+	text-align: right;
+}

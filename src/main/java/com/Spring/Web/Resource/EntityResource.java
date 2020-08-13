@@ -37,25 +37,41 @@ public class EntityResource {
 		this.entityRepositoryDAO = entityRepositoryDAO;
 	}
 	
-	@PostMapping("/cadastrar")
+	@PostMapping("cadastrar")
 	public String salvarPaciente(@RequestBody Paciente paciente) {
 		entityRepositoryDAO.save(paciente);
 		return "redirect:novo";
 	}
 	
-	@PutMapping
-	public String alterarDados (Paciente paciente) {
-		return "redirect:alterarDados";
+	
+	@PutMapping("alterar")
+	public Paciente alterarDados (@RequestBody String cpf) {
+		if (entityRepositoryDAO.existsByCpf(cpf) == true) {
+			
+			Paciente paciente = entityRepositoryDAO.findByCpf(cpf);
+			paciente.setNome(paciente.getNome());
+			paciente.setRg(paciente.getRg());
+			paciente.setNascimento(paciente.getNascimento());
+			paciente.setGenero(paciente.getGenero());
+			paciente.setCelular(paciente.getCelular());
+			paciente.setTelefone(paciente.getTelefone());
+			paciente.setEmail(paciente.getEmail());
+			paciente.setEndereco(paciente.getEndereco());
+			paciente.setCep(paciente.getCep());
+			
+			return entityRepositoryDAO.save(paciente);
+		}
+		return null;
 	}
 	
-	@GetMapping("/listar")
+	@GetMapping("listar")
 	public ModelAndView listaPacientes() {
 		ModelAndView model = new ModelAndView("tabelaSql");
 		model.addObject("pacientes", entityRepositoryDAO.findAll());
 		return model;
 	}
 
-	@PostMapping("/salvar")
+	@PostMapping("salvar")
 	public String salvarListaCSV(@RequestParam("file") MultipartFile file) throws IOException {
 		// Falta criar a classe de serviço. Feito na classe de resource apenas para
 		// testes iniciais.
@@ -106,16 +122,11 @@ public class EntityResource {
 
 	}
 
-	@DeleteMapping("deletar/cpf/{cpf}")
-	public void deletarByCpf(@PathVariable String cpf) {
+	@DeleteMapping("deletar/cpf")
+	public void deletarByCpf(@RequestBody String cpf) {
 		entityRepositoryDAO.deleteByCpf(cpf);
 	}
-	
-	@DeleteMapping("deletar/rg/{rg}")
-	public void deletarByRg(@PathVariable String rg) {
-		entityRepositoryDAO.deleteByRg(rg);
-	}
-	
+		
 	@GetMapping("buscar/nome/{nome}")
 	public Paciente buscarByName(@PathVariable String nome) {
 		return entityRepositoryDAO.findByNomeIgnoreCaseContaining(nome);
@@ -137,7 +148,7 @@ public class EntityResource {
 		return "telaAcesso";
 	}
 
-	@GetMapping("/index")
+	@GetMapping("/principal")
 	public String telaMenu() {
 		return "telaMenu";
 	}
@@ -159,7 +170,7 @@ public class EntityResource {
 
 	// testes
 	@GetMapping("/teste")
-	public String testeMaterialize() {
+	public String teste() {
 		return "teste";
 	}
 

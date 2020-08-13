@@ -17,11 +17,12 @@
 		<div id="painel">
 			<form action="cadastrar" method="post">
 				<div id="nome" class="col s12">
-					<label>NOME: <input value="" name="nome"></label>
+					<label>NOME: <input type="text" value="" name="nome"></label>
 				</div>
 
 				<div id="cpf" class="col s6 l4">
-					<label>CPF: <input class="cpf" type="text" value="" name="cpf" ></label>
+					<label>CPF: <input class="cpf" type="text" value=""
+						name="cpf"></label>
 				</div>
 				<div id="rg" class="col s6 l4">
 					<label>RG: <input class="rg" type="text" value="" name="rg"></label>
@@ -30,22 +31,23 @@
 					<label>NASCIMENTO: <input type="date" value=""
 						name="nascimento"></label>
 				</div>
-				
+
 				<div id="genero" class="col s6 l4">
-					<label >GÊNERO: 
-					    <select>
+					<label>GÊNERO: <select>
 							<option value="M">Masculino</option>
 							<option value="F">Feminino</option>
 							<option value="O">Outros</option>
-						</select></label>
+					</select></label>
 				</div>
 
 				<div id="celular" class="col s6 l4">
-					<label>CELULAR: <input class="celular" type="tel" value="" name="celular" placeholder="(99)999999999"></label>
+					<label>CELULAR: <input class="celular" type="tel" value=""
+						name="celular" placeholder="(99)999999999"></label>
 				</div>
-				
+
 				<div id="telefone" class="col s6 l4">
-					<label>TELEFONE: <input class="telefone" type="tel" value="" name="telefone" placeholder="(99)99999999"></label>
+					<label>TELEFONE: <input class="telefone" type="tel"
+						value="" name="telefone" placeholder="(99)99999999"></label>
 				</div>
 
 				<div id="email" class="col s12">
@@ -56,14 +58,15 @@
 						name="endereco"></label>
 				</div>
 				<div id="cep" class="col s4">
-					<label>CEP: <input class="cep" type="text" value="" name="cep"></label>
+					<label>CEP: <input class="cep" type="text" value=""
+						name="cep"></label>
 				</div>
 
 				<div id="salvar" class="col s10">
 					<button class="waves-effect waves-light btn-small" type="submit">Salvar</button>
 				</div>
 				<div id="voltar" class="col s2">
-					<a href="/index"><button
+					<a href="/principal"><button
 							class="waves-effect waves-light btn-small" type="button">Voltar</button></a>
 				</div>
 
@@ -73,16 +76,20 @@
 
 
 
-	<script type="text/javascript" src="materialize/js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="materialize/js/jquery.mask.js"></script>
+	<script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.mask.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('select').formSelect();
 		});
-		$('.cpf').mask('000.000.000-00', {reverse: true});
-		$('.rg').mask('00.000.000-0', {reverse: true});
+		$('.cpf').mask('000.000.000-00', {
+			reverse : true
+		});
+		$('.rg').mask('00.000.000-0', {
+			reverse : true
+		});
 		$('.telefone').mask('(00) 0000-0000');
 		$('.celular').mask('(00) 00000-0000');
 		$('.cep').mask('00000-000');
