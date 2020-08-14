@@ -118,22 +118,22 @@
 
 	<div>
 		<h4 class="center">Filtros</h4>
-		<form action="" class="row center">
+		<form name="filtro" action="" class="row center">
 
 			<label class="col s2 m2 l1 offset-s1 offset-l3">
-			   <input id="1" value="nome" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Nome</span>
+			   <input value="nome" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Nome</span>
 			</label>
 			
 			<label class="col s2 m2 l1">
-			   <input id="2" value="cpf" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>CPF</span>
+			   <input value="cpf" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>CPF</span>
 			</label>
 			
 			<label class="col s2 m2 l1">
-			   <input id="3" value="rg" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>RG</span>
+			   <input value="rg" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>RG</span>
 			</label>
 			
 			<label class="col s2 m2 l1">
-			   <input id="4" value="todos" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Todos</span>
+			   <input value="todos" name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Todos</span>
 			</label>
 			
 			<label class="col s2 m2 l2">
@@ -223,20 +223,10 @@
 		});
 		
 		function getRadioEscolhido(){
-			
-				if (document.getElementById("1").checked){
-					return document.getElementById("placeholder").placeholder = "Buscar " + document.getElementById("1").value;
-				}
-				else if (document.getElementById("2").checked){
-					return document.getElementById("placeholder").placeholder = "Buscar " + document.getElementById("2").value;
-				}
-				else if (document.getElementById("3").checked){
-					return document.getElementById("placeholder").placeholder = "Buscar " + document.getElementById("3").value;
-				}
-				else {
-					return document.getElementById("placeholder").placeholder = "Buscar " + document.getElementById("4").value;
-				}
-				
+			const form = document.forms.filtro;
+			const checked = form.querySelector('input[name=escolhido]:checked');
+			 
+			return document.getElementById("placeholder").placeholder = "Buscar " + checked.value;			
 		}
 	</script>
 
