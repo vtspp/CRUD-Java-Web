@@ -43,7 +43,7 @@ public class EntityResource {
 		return "redirect:novo";
 	}
 	
-	
+	//Criar um método responsavel por verificar a existência do "cpf" ou lançar uma exception com retorno NOT FOUND
 	@PutMapping("alterar")
 	public Paciente alterarDados (@RequestBody String cpf) {
 		if (entityRepositoryDAO.existsByCpf(cpf) == true) {
