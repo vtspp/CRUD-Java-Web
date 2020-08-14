@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Spring.Web.Errors.EntityErrors;
 import com.Spring.Web.Model.Paciente;
 import com.Spring.Web.Repository.EntityRepository;
 
@@ -43,10 +44,10 @@ public class EntityResource {
 		return "redirect:novo";
 	}
 	
-	//Criar um método responsavel por verificar a existência do "cpf" ou lançar uma exception com retorno NOT FOUND
 	@PutMapping("alterar")
 	public Paciente alterarDados (@RequestBody String cpf) {
-		if (entityRepositoryDAO.existsByCpf(cpf) == true) {
+		
+		    verificarCpfExiste(cpf);
 			
 			Paciente paciente = entityRepositoryDAO.findByCpf(cpf);
 			paciente.setNome(paciente.getNome());
@@ -60,8 +61,6 @@ public class EntityResource {
 			paciente.setCep(paciente.getCep());
 			
 			return entityRepositoryDAO.save(paciente);
-		}
-		return null;
 	}
 	
 	@GetMapping("listar")
@@ -112,7 +111,7 @@ public class EntityResource {
 
 				linha = bufferedReader.readLine();
 			}
-		} catch (FileNotFoundException e) {// falta implementar as Exception personalizadas
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -124,6 +123,7 @@ public class EntityResource {
 
 	@DeleteMapping("deletar/cpf")
 	public void deletarByCpf(@RequestBody String cpf) {
+		verificarCpfExiste(cpf);
 		entityRepositoryDAO.deleteByCpf(cpf);
 	}
 		
@@ -134,12 +134,26 @@ public class EntityResource {
 	
 	@GetMapping("buscar/cpf/{cpf}")
 	public Paciente buscarByCpf(@PathVariable String cpf) {
+		verificarCpfExiste(cpf);
 		return entityRepositoryDAO.findByCpf(cpf);
 	}
 	
 	@GetMapping("buscar/rg/{rg}")
 	public Paciente buscarByRg(@PathVariable String rg) {
+		verificarRgExiste(rg);
 		return entityRepositoryDAO.findByRg(rg);
+	}
+	
+	private void verificarCpfExiste(String cpf) {
+		if (!entityRepositoryDAO.existsByCpf(cpf)) {
+			throw new EntityErrors("Cpf " + cpf + " não Encontrado na base de dados");
+		}
+	}
+	
+	private void verificarRgExiste(String rg) {
+		if (!entityRepositoryDAO.existsByRg(rg)) {
+			throw new EntityErrors("Rg " + rg + " não Encontrado na base de dados");
+		}
 	}
 
 	// Telas
