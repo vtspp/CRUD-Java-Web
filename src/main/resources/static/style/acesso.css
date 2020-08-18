@@ -1,9 +1,16 @@
 body {
 	padding-top: 15%;
-	background-image: url("background1.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-image: url("background1.jpg");
+}
+
+video {
+	position: absolute;
+	top: 64px;
+	left: 0;
+	width: 100%;
+	heigth: 100%;
+	object-fit: cover;
 }
 
 .container {

@@ -62,13 +62,6 @@ public class EntityResource {
 			
 			return entityRepositoryDAO.save(paciente);
 	}
-	
-	@GetMapping("listar")
-	public ModelAndView listaPacientes() {
-		ModelAndView model = new ModelAndView("tabelaSql");
-		model.addObject("pacientes", entityRepositoryDAO.findAll());
-		return model;
-	}
 
 	@PostMapping("salvar")
 	public String salvarListaCSV(@RequestParam("file") MultipartFile file) throws IOException {
@@ -126,33 +119,46 @@ public class EntityResource {
 		verificarCpfExiste(cpf);
 		entityRepositoryDAO.deleteByCpf(cpf);
 	}
+	
+	@GetMapping("lista")
+	public ModelAndView listaPacientes() {
+		ModelAndView model = new ModelAndView("tabelaSql");
+		model.addObject("pacientes", entityRepositoryDAO.findAll());
+		return model;
+	}
 		
-	@GetMapping("buscar/nome/{nome}")
-	public Paciente buscarByName(@PathVariable String nome) {
-		return entityRepositoryDAO.findByNomeIgnoreCaseContaining(nome);
+	@GetMapping("buscar/nome/{dado}")
+	public ModelAndView buscarByName(@PathVariable String dado) {
+		ModelAndView model = new ModelAndView("tabelaSql");
+		model.addObject("pacientes", entityRepositoryDAO.findByNomeIgnoreCaseContaining(dado));
+		return model;
 	}
 	
-	@GetMapping("buscar/cpf/{cpf}")
-	public Paciente buscarByCpf(@PathVariable String cpf) {
-		verificarCpfExiste(cpf);
-		return entityRepositoryDAO.findByCpf(cpf);
+	@GetMapping("buscar/cpf/{dado}")
+	public ModelAndView buscarByCpf(@PathVariable String dado) {
+		verificarCpfExiste(dado);
+		ModelAndView model = new ModelAndView("tabelaSql");
+		model.addObject("pacientes", entityRepositoryDAO.findByCpf(dado));
+		return model;
 	}
 	
-	@GetMapping("buscar/rg/{rg}")
-	public Paciente buscarByRg(@PathVariable String rg) {
-		verificarRgExiste(rg);
-		return entityRepositoryDAO.findByRg(rg);
+	@GetMapping("buscar/rg/{dado}")
+	public ModelAndView buscarByRg(@PathVariable String dado) {
+		verificarRgExiste(dado);
+		ModelAndView model = new ModelAndView("tabelaSql");
+		model.addObject("pacientes", entityRepositoryDAO.findByRg(dado));
+		return model;
 	}
-	
+	//Refatorar e tornar mais genérico. Dois métodos com código repetidos.
 	private void verificarCpfExiste(String cpf) {
 		if (!entityRepositoryDAO.existsByCpf(cpf)) {
-			throw new EntityErrors("Cpf " + cpf + " não Encontrado na base de dados");
+			throw new EntityErrors("Cpf " + cpf + " não encontrado na base de dados");
 		}
 	}
 	
 	private void verificarRgExiste(String rg) {
 		if (!entityRepositoryDAO.existsByRg(rg)) {
-			throw new EntityErrors("Rg " + rg + " não Encontrado na base de dados");
+			throw new EntityErrors("Rg " + rg + " não encontrado na base de dados");
 		}
 	}
 
@@ -171,6 +177,11 @@ public class EntityResource {
 	public String telaNovoPaciente() {
 		return "telaNovoPaciente";
 	}
+	
+	/*@GetMapping("/listas")
+	public String telaMostrarDados() {
+		return "tabelaSql";
+	}*/
 	
 	@GetMapping("/alterarDados")
 	public String telaAlterarDados() {

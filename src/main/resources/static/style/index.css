@@ -1,8 +1,6 @@
 body {
-	background-image: url("background1.jpg");
 	background-size: cover;
-	background-repeat: no-repeat;
-	
+	background-repeat: no-repeat;	
 }
 
 nav {
@@ -35,4 +33,13 @@ nav a span {
 
 .container ul {
 	background-color: #6200ea;
+}
+
+video {
+	position: absolute;
+	top: 64px;
+	left: 0;
+	width: 100%;
+	heigth: 100%;
+	object-fit: cover;
 }
