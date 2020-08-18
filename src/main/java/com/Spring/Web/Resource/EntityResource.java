@@ -120,35 +120,48 @@ public class EntityResource {
 		entityRepositoryDAO.deleteByCpf(cpf);
 	}
 	
-	@GetMapping("lista")
+	@GetMapping("buscar")
 	public ModelAndView listaPacientes() {
 		ModelAndView model = new ModelAndView("tabelaSql");
 		model.addObject("pacientes", entityRepositoryDAO.findAll());
 		return model;
 	}
+	
+	@GetMapping("{dado}")
+	public ModelAndView buscarByDado(@PathVariable String dado) {
+		String[] vet = dado.split("");
 		
-	@GetMapping("buscar/nome/{dado}")
-	public ModelAndView buscarByName(@PathVariable String dado) {
+		if(vet.length == 14) {
+			return buscarByCpf(dado);
+		}
+		else if (vet.length == 12) {
+			return buscarByRg(dado);
+		}
+		else {
+			return buscarByName(dado);
+		}
+	}
+		
+	public ModelAndView buscarByName(String nome) {
 		ModelAndView model = new ModelAndView("tabelaSql");
-		model.addObject("pacientes", entityRepositoryDAO.findByNomeIgnoreCaseContaining(dado));
+		model.addObject("pacientes", entityRepositoryDAO.findByNomeIgnoreCaseContaining(nome));
 		return model;
 	}
 	
-	@GetMapping("buscar/cpf/{dado}")
-	public ModelAndView buscarByCpf(@PathVariable String dado) {
-		verificarCpfExiste(dado);
+	public ModelAndView buscarByCpf(String cpf) {
+		verificarCpfExiste(cpf);
 		ModelAndView model = new ModelAndView("tabelaSql");
-		model.addObject("pacientes", entityRepositoryDAO.findByCpf(dado));
+		model.addObject("pacientes", entityRepositoryDAO.findByCpf(cpf));
 		return model;
 	}
 	
-	@GetMapping("buscar/rg/{dado}")
-	public ModelAndView buscarByRg(@PathVariable String dado) {
-		verificarRgExiste(dado);
+	public ModelAndView buscarByRg(String cpf) {
+		verificarRgExiste(cpf);
 		ModelAndView model = new ModelAndView("tabelaSql");
-		model.addObject("pacientes", entityRepositoryDAO.findByRg(dado));
+		model.addObject("pacientes", entityRepositoryDAO.findByRg(cpf));
 		return model;
 	}
+	
 	//Refatorar e tornar mais genérico. Dois métodos com código repetidos.
 	private void verificarCpfExiste(String cpf) {
 		if (!entityRepositoryDAO.existsByCpf(cpf)) {
@@ -178,10 +191,10 @@ public class EntityResource {
 		return "telaNovoPaciente";
 	}
 	
-	/*@GetMapping("/listas")
+	@GetMapping("/lista")
 	public String telaMostrarDados() {
 		return "tabelaSql";
-	}*/
+	}
 	
 	@GetMapping("/alterarDados")
 	public String telaAlterarDados() {
@@ -193,10 +206,10 @@ public class EntityResource {
 		return "telaCarregarCSV";
 	}
 
-	// testes
+	/*// testes
 	@GetMapping("/teste")
 	public String teste() {
 		return "teste";
 	}
-
+*/
 }

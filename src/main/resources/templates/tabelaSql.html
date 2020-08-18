@@ -7,8 +7,8 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link type="text/css" rel="stylesheet"
-	href="materialize/css/materialize.min.css" media="screen,projection" />
-<link type="text/css" rel="stylesheet" href="style/tabelaSQL.css" />
+	href="css/materialize.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet" href="css/tabelaSQL.css" />
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 
 		<a href="/principal" class="brand-logo"><img
 			class="responsive-img" alt="Logo Java"
-			src="style/logo-java-coffee-cup.svg"><span>PROJETO</span></a>
+			src="images/logo-java-coffee-cup.svg"><span>PROJETO</span></a>
 
 		<!-- menu para desktop -->
 		<ul class="right hide-on-med-and-down" id="desktop">
@@ -46,11 +46,11 @@
 		<div class="container hide-on-large-only">
 
 			<a href="/principal" class="brand-logo"><img class="responsive-img"
-				alt="Logo Java" src="style/logo-java-coffee-cup.svg"><span>PROJETO</span></a>
+				alt="Logo Java" src="images/logo-java-coffee-cup.svg"><span>PROJETO</span></a>
 
 
 			<ul class="sidenav" id="mobile">
-				<li><a href="/index"><i class="material-icons left">home</i>Home</a></li>
+				<li><a href="/principal"><i class="material-icons left">home</i>Home</a></li>
 
 				<li><a class="mobile" data-target="listaServiçoMoveis"><i
 						class="material-icons left">work</i>Serviços</a>
@@ -58,7 +58,7 @@
 
 						<!-- Aqui pode ser adicionados novos serviços na lista -->
 						<li><a href="/novo"><i class="material-icons left">perm_identity</i>Novo</a></li>
-						<li><a href="/novo"><i class="material-icons left">create</i>Alterar
+						<li><a href="/alterarDados"><i class="material-icons left">create</i>Alterar
 								dados</a></li>
 						<li><a href="/lista"><i class="material-icons left">visibility</i>Visualizar
 								Banco de dados</a></li>
@@ -119,29 +119,35 @@
 
 	<div>
 		<h4 class="center">Filtros</h4>
-		<form id="filtro" name="filtro" action="" onclick="montarEndpoint()"
+		<form id="filtro" name="filtro"
 			class="row center" method="get">
 
-			<label class="col s2 m2 l1 offset-s1 offset-l3"> <input
-				value="nome" name="escolhido" type="radio" class="with-gap"
-				onclick="getRadioEscolhido()"><span>Nome</span>
-			</label> <label class="col s2 m2 l1"> <input value="cpf"
-				name="escolhido" type="radio" class="with-gap"
-				onclick="getRadioEscolhido()"><span>CPF</span>
-			</label> <label class="col s2 m2 l1"> <input value="rg"
-				name="escolhido" type="radio" class="with-gap"
-				onclick="getRadioEscolhido()"><span>RG</span>
-			</label> <label class="col s2 m2 l1"> <input value="todos"
-				name="escolhido" type="radio" class="with-gap"
-				onclick="getRadioEscolhido()"><span>Todos</span>
-			</label> <label class="col s2 m2 l2"> <input value="a-z"
+			<label class="col s2 m2 l1 offset-s1 offset-l3"> <input value="nome"
+			    name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Nome</span>
+			</label>
+			
+			<label class="col s2 m2 l1"> <input value="cpf"
+				name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>CPF</span>
+			</label>
+			
+			<label class="col s2 m2 l1"> <input value="rg" 
+			    name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>RG</span>
+			</label>
+			
+			<label class="col s2 m2 l1"> <input value="todos"
+			    name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Todos</span>
+			</label>
+			
+			<label class="col s2 m2 l2"> <input value="a-z"
 				type="checkbox" class="with-gap"><span>Ordenar de A-Z</span>
-			</label><br>
-			<br> <input id="placeholder" value="" name="dado" type="search"
+			</label><br><br> 
+			
+			<input id="placeholder" value="" name="dado" type="text"
 				placeholder=""
 				class=" center col s6 m5 l4 offset-s3 offset-m3 offset-l4">
+			
 			<button class=" buscar waves-effect waves-light btn-small left"
-				type="submit">Buscar</button>
+				type="submit" onclick="montarEndpoint()">Buscar</button>
 		</form>
 
 	</div>
@@ -191,8 +197,8 @@
 
 
 
-	<script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.sidenav').sidenav();
@@ -230,9 +236,15 @@
 		}
 
 		function montarEndpoint() {
-			return document.getElementById("filtro").action = "buscar/"
-					+ checked.value + "/" + document.getElementById("placeholder").value;
+			
+			if(checked.value !== 'todos'){
+				return document.getElementById("filtro").action = document.getElementById("placeholder").value;
+			}
+			else{
+				return document.getElementById("filtro").action = "buscar";
+			}
 		}
+		
 	</script>
 
 </body>
