@@ -2,12 +2,10 @@ body {
 	padding-top: 0px;
 	height: 100%;
 	margin: 0;
-	background-color: white;
-	/* background-image: url("background2.jpg"); */
+	background-color: #e0e0e0;
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-
 
 
 nav {
@@ -33,6 +31,8 @@ nav a span {
 
 #desktop ul{
 	background-color: #6200ea;
+	box-shadow: 5px 5px 10px 5px black;
+	border-radius: 10px;
 }
 .container li a {
 	color: white;
@@ -40,6 +40,8 @@ nav a span {
 
 .container ul {
 	background-color: #6200ea;
+	box-shadow: 5px 5px 10px 5px black;
+	border-radius: 10px;
 }
 
 th, td{
@@ -50,14 +52,39 @@ th, td{
 	color: white;
 }
 
-.container {
+.tabela {
 	background-color: #6200ea;
+	box-shadow: 10px 10px 10px 5px;
 	
 }
 
 .modal-content p {
 	color: black;
 }
+
+form {
+	border-style: solid 1px;
+	border-radius: 20px;
+	box-shadow: 10px 10px 10px 5px;
+	width: 450px;
+	height: 120px;
+	background-color: white;
+}
+
+form label {
+	color: black;
+}
+
+#filtrar {
+	border-style: solid 1px;
+	border-radius: 3px;
+	box-shadow: 5px 5px 10px 5px black;
+	width: 400px;
+	height: 50px;
+	background-color: white;
+}
+
+
 
 footer {
 	background-color: #6200ea;

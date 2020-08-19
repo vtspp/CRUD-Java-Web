@@ -2,6 +2,7 @@ body {
 	padding-top: 15%;
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-image: url("/images/background2.jpg");
 }
 
 video {

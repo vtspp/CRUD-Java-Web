@@ -118,43 +118,48 @@
 	<br>
 
 	<div>
-		<h4 class="center">Filtros</h4>
 		<form id="filtro" name="filtro"
-			class="row center" method="get">
+			class="row center">
+			
+			<h4 class="center">Filtros</h4>
 
-			<label class="col s2 m2 l1 offset-s1 offset-l3"> <input value="nome"
+			<label class=""> <input value="nome"
 			    name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Nome</span>
 			</label>
 			
-			<label class="col s2 m2 l1"> <input value="cpf"
+			<label class=""> <input value="cpf"
 				name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>CPF</span>
 			</label>
 			
-			<label class="col s2 m2 l1"> <input value="rg" 
+			<label class=""> <input value="rg" 
 			    name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>RG</span>
 			</label>
 			
-			<label class="col s2 m2 l1"> <input value="todos"
+			<label class=""> <input value="todos"
 			    name="escolhido" type="radio" class="with-gap" onclick="getRadioEscolhido()"><span>Todos</span>
 			</label>
 			
-			<label class="col s2 m2 l2"> <input value="a-z"
+			<label class=""> <input value="a-z"
 				type="checkbox" class="with-gap"><span>Ordenar de A-Z</span>
 			</label><br><br> 
-			
-			<input id="placeholder" value="" name="dado" type="text"
-				placeholder=""
-				class=" center col s6 m5 l4 offset-s3 offset-m3 offset-l4">
-			
-			<button class=" buscar waves-effect waves-light btn-small left"
-				type="submit" onclick="montarEndpoint()">Buscar</button>
+		
 		</form>
-
+		
+		<form id="filtrar" class="row center" >
+		
+		<input id="placeholder" value="" name="dado" type="text"
+				placeholder=""
+				class=" col s9 l9 center">
+		<button class="center buscar waves-effect waves-light btn-small"
+				type="submit" onclick="montarEndpoint()">Buscar</button>
+		
+		</form>
+			
 	</div>
 
 
-	<section class="col s12 l12">
-		<table class="container">
+	<section class="col s12 m12 l12">
+		<table class="container tabela">
 			<thead>
 				<tr>
 					<th>Nome</th>
@@ -238,10 +243,10 @@
 		function montarEndpoint() {
 			
 			if(checked.value !== 'todos'){
-				return document.getElementById("filtro").action = document.getElementById("placeholder").value;
+				return document.getElementById("filtrar").action = document.getElementById("placeholder").value;
 			}
 			else{
-				return document.getElementById("filtro").action = "buscar";
+				return document.getElementById("filtrar").action = "buscar";
 			}
 		}
 		
