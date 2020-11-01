@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +29,7 @@ import com.Spring.Web.Model.Paciente;
 import com.Spring.Web.Repository.EntityRepository;
 
 @Controller
+@RequestMapping("/")
 public class EntityResource {
 
 	
@@ -176,7 +178,7 @@ public class EntityResource {
 	}
 
 	// Telas
-	@GetMapping("/acesso")
+	@GetMapping
 	public String telaAcesso() {
 		return "telaAcesso";
 	}
