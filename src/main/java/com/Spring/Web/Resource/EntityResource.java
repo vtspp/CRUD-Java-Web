@@ -71,7 +71,7 @@ public class EntityResource {
 		// testes iniciais.
 		// Será usada uma pasta temporaria do sistema para receber o arquivo. O mesmo
 		// deverá ser apagado após a instância do objeto.
-		String upLoadDir = "C:\\sts-bundle\\sts-3.9.9.RELEASE\\Project\\Hospital";
+		String upLoadDir = "/target";
 
 		Path copyLocation = Paths.get(
 				upLoadDir 
@@ -178,7 +178,7 @@ public class EntityResource {
 	}
 
 	// Telas
-	@GetMapping
+	@GetMapping("/acesso")
 	public String telaAcesso() {
 		return "telaAcesso";
 	}
